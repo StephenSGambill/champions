@@ -1,0 +1,94 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 12px;
+  background-color: rgb(95, 91, 91);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  margin: 30px auto;
+  text-align: center;
+  background-color: rgb(1, 1, 1);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+img {
+  width: 90px;
+  margin: 0 auto;
+}
+
+#input-field {
+  background: #444059;
+  border: none;
+  border-radius: 8px;
+  color: #8f8f8f;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 15px;
+  height: 93px;
+  padding: 8px;
+  resize: none;
+}
+
+button {
+  background-color: #28a9f1;
+  border: 0;
+  border-radius: 8px;
+  color: #04131c;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 10px 0;
+  padding: 15px;
+  text-align: center;
+}
+button:hover {
+  background-color: #107db8;
+  cursor: pointer;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  margin: 4px 0;
+  list-style: none;
+  background: #fff;
+  color: #1b1924;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 6px;
+  text-align: left;
+}
+
+#toDisplay,
+#fromDisplay {
+  font-weight: bold;
+}
+
+.to-from-container {
+  display: flex;
+}
+
+#input-to,
+#input-from {
+  background: #444059;
+  border: none;
+  padding: 4px;
+  border-radius: 5px;
+  margin-top: 4px;
+  text-align: center;
+  font-size: 15px;
+  color: #8f8f8f;
+}
