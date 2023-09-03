@@ -1,6 +1,6 @@
 import { initializeApp }
     from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue, remove }
+import { getDatabase, ref, push, onValue, remove, update }
     from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 import { convertDate } from "./convertDate.js"
 
@@ -23,11 +23,13 @@ publishButtonEl.addEventListener("click", function () {
         comment: inputFieldEl.value,
         to: toFieldEl.value,
         from: fromFieldEl.value,
-        timestamp: new Date().getTime()
+        timestamp: new Date().getTime(),
+        isLiked: false
     }
     inputObject.comment = inputFieldEl.value
     inputObject.to = toFieldEl.value
     inputObject.from = fromFieldEl.value
+
     if (inputObject.comment !== "" && inputObject.to !== "" && inputObject.from !== "") {
         push(endorsementListInDB, inputObject)
         clearInputFieldEl()
@@ -56,24 +58,35 @@ function appendItemToEndorsementsListEl(item) {
     let itemValue = item[1].comment
     let itemTo = item[1].to
     let itemFrom = item[1].from
-    let itemDate = item[1].timestamp
     let date = convertDate(item[1].timestamp)
+    let itemLiked = item[1].isLiked
+    let likedIcon = itemLiked ? "👍🏼 Liked" : "Like❓"
 
     let newEl = document.createElement("li")
-    newEl.innerHTML = `<div className="commentContainer"> 
+    newEl.innerHTML = `<div className="commentContainer" id=${itemID}> 
                         <p id="toDisplay">To ${itemTo}<p>
                         <p id="commentDisplay">${itemValue}</p>
                         <p id="fromDisplay">From ${itemFrom}</p>
                         <p id="dateDisplay">${date}</p>
+                        <div id="likedDisplay">${likedIcon}</div>
                         <div>
                         `
+
+    endorsementsListEl.append(newEl)
 
     newEl.addEventListener("dblclick", () => {
         let itemLocationInDB = ref(database, `endorsements/${itemID}`)
         remove(itemLocationInDB)
     })
 
-    endorsementsListEl.append(newEl)
+    let likedEl = newEl.querySelector('#likedDisplay')
+
+    likedEl.addEventListener("click", () => {
+        let itemLocationInDB = ref(database, `endorsements/${itemID}`)
+        itemLiked = !itemLiked
+        update(itemLocationInDB, { isLiked: itemLiked });
+
+    })
 }
 
 function clearInputFieldEl() {

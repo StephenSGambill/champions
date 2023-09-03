@@ -78,7 +78,6 @@ ul li {
 }
 
 .to-from-container {
-  display: flex;
 }
 
 #input-to,
@@ -91,4 +90,5 @@ ul li {
   text-align: center;
   font-size: 15px;
   color: #8f8f8f;
+  height: 30px;
 }
